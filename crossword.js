@@ -295,36 +295,36 @@ function handleCellClick(cell, row, col, wordNumbering, wordObjList) {
 
       // Handle typing of single letters
       if (event.key.length === 1 && /^[a-zA-Z]$/.test(event.key)) {
-          event.preventDefault(); // Prevent default typing behavior
+          event.preventDefault(); 
 
           // Ensure only one letter per cell
           if (letterSpan) {
-              letterSpan.textContent = event.key.toUpperCase(); // Replace the existing letter
+              letterSpan.textContent = event.key.toUpperCase(); 
           } else {
               const newLetterSpan = document.createElement('span');
               newLetterSpan.className = 'typed-letter';
-              newLetterSpan.textContent = event.key.toUpperCase(); // Add the typed letter
+              newLetterSpan.textContent = event.key.toUpperCase(); 
               if (indicator) {
-                  cell.insertBefore(newLetterSpan, indicator); // Keep the indicator at the top
+                  cell.insertBefore(newLetterSpan, indicator); 
               } else {
-                  cell.appendChild(newLetterSpan); // In case there's no indicator
+                  cell.appendChild(newLetterSpan); 
               }
           }
         checkWordFilled(row, col, wordObjList);
       }
 
       if (event.key === 'Backspace') {
-          event.preventDefault(); // Prevent default backspace behavior
+          event.preventDefault(); 
 
           if (letterSpan) {
-              letterSpan.textContent = ''; // Clear the letter but keep the indicator
+              letterSpan.textContent = '';
           }
       }
   });
 }
 
 function checkWordFilled(row, col, wordObjList) {
-  // Loop through wordObjList to find the word that starts from (row, col)
+
   wordObjList.forEach((wordObj) => {
     let filled = true;
     let correct = true;
@@ -483,20 +483,6 @@ function main(wordList, numOfWords) {
     }
   }
 
-  //console.log(`Before failedWords check: ${wordObjList.length}`);
-  // console.log(failedWords);
-  // for (let failedWord of failedWords) {
-  //   let isHorizontal = Math.random() < 0.5 ? 0 : 1; // Randomly try a direction
-  //   let wordPlaced = attemptWordPlacement(failedWord.word, wordObjList, gridResult, failedWord.hint, isHorizontal);
-  //   if (!wordPlaced) {
-  //     isHorizontal = isHorizontal === 0 ? 1 : 0;
-  //     attemptWordPlacement(failedWord.word, wordObjList, gridResult, failedWord.hint, isHorizontal);
-  //   } else {
-  //     console.log(`word "${failedWord.word}" was placed after second attempt.`)
-  //   }
-  // }
-  //console.log(`Before failedWords check: ${wordObjList.length}`);
-  //console.log(failedWords.length);
   createGridLayoutWithWordsOnIt(gridResult, wordObjList);
 }
 // Helper to place a word and store its metadata
